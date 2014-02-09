@@ -405,13 +405,13 @@ the IP:Port of peer that start to search the file, the first ( called Searcher )
 It is used by the peers that found the searched file for establish a tcp-connection with the Searcher and send to he a FF-message. 
 
 
-<h5>FN [ file-name ]<h/5>
+<h5>FN [ file-name ]</h5>
 
 the name of searched file ( example: FN photo.jpg or FN pippo ).
 
 <br>
 
-=== FF-message  ===
+<h5>FF-message</h5>
 
 <pre>
 SF [ searched-file-name ] \n
@@ -427,25 +427,19 @@ ID [ file-SHA1-ID ]
 This is the description: 
 
 
-''' SF [ searched-file-name ]  '''
+<b>SF [ searched-file-name ]</b>
 
 the name of searched-file. It is used by the searcher for know what file he has searched. 
 
-<br> 
-
-''' FN [ file-name ]  '''
+<b>FN [ file-name ]</b>
 
 the name of file found. 
 
-<br> 
-
-''' SZ [ file-size ]  '''
+<b>SZ [ file-size ]</b>
 
 the size of file found in bytes. 
 
-<br> 
-
-''' ID [ file-SHA1-ID ]  '''
+<b>ID [ file-SHA1-ID ]</b>
 
 the SHA1-hash-ID of file found. 
 
@@ -475,7 +469,7 @@ ID ...   // 2
 
 <br>
 
-=== Example  ===
+<h5>Example</h5>
 
 A wants find a file called pippo and send a FS-message to B: 
 
@@ -543,7 +537,7 @@ And C control if has the file and spread the message... When TTL=0 the FS-messag
 
 <br>
 
-== FPR ( File Pack Request ) &amp; FP ( File Pack )  ==
+<h3>FPR ( File Pack Request ) &amp; FP ( File Pack )</h3>
 
 In this protocol the shared files are divided in more small packs, called File-Pack, with a fixed size of 16 kilobytes ( 16384 bytes ). For this when a peer want download a file he must download one to one all the File-Packs of it. 
 
@@ -554,13 +548,13 @@ The TTL must be 0 for the FPR and FP messages, and also if the TTL is not 0, for
 The number-position of the first byte of a file is always 0.
  
 
-{{Info|text=The size of File-Packs is always 16 kilobytes ( 16384 bytes ).}}
+<b>Info:</b> The size of File-Packs is always 16 kilobytes ( 16384 bytes ).
 
 <br> 
 
 The structure of parameters: 
 
-=== FPR-message  ===
+<h5>FPR-message</h5>
 <pre>
 FN [ file-name ] \n
 
@@ -573,25 +567,20 @@ ST [ start-point ]
 This is the description: 
 
 
-''' FN [ file-name ]  '''
+<b>FN [ file-name ]</b>
 
 the name of the file, it is used by peer that receive the FPR-message for know what file must open for create and send the file-pack. 
 
-<br> 
-
-''' ID [ file-SHA1-ID ]  '''
+<b>ID [ file-SHA1-ID ]</b>
 
 the SHA1-ID ( hash ID ) of file, it is used by peer that receive the FPR-message for know what file must open for create and send the file-pack. 
 
-<br> 
-
-''' ST [ start-point ]  '''
+<b>ST [ start-point ]</b>
 
 it is the point to start the file-pack, in bytes. It is used for know where start the file-pack in file. 
 
-<br>
 
-=== <br> FP-message  ===
+<h5>FP-message</h5>
 <pre>FN [ file-name ] \n
 
 ID [ file-SHA1-ID ] \n
@@ -602,51 +591,45 @@ ST [ start-point ] \n
 
 BN \n
 
-[ binary-pack ]</pre> 
-<br> This is the description: 
+[ binary-pack ]
+</pre> 
+<br> 
+This is the description: 
 
-<br>
 
-''' FN [ file-name ] '''
+<b>FN [ file-name ]</b>
 
 the name of the file, it is used by peer that receive the FP-message for know who is the file-proprietary of the file-pack. 
 
-<br> 
-
-''' ID [ file-SHA1-ID ]  '''
+<b>ID [ file-SHA1-ID ]</b>
 
 the SHA1-ID ( hash ID ) of file, it is used by peer that receive the FP-message for know who is the file-proprietary of the file-pack. 
 
-<br> 
-
-''' PI [ pack-SHA1-ID ]  '''
+<b>PI [ pack-SHA1-ID ]</b>
 
 the SHA1-ID ( hash-ID ) of the file-pack, it is used for control that the binary-file-pack received is not damage: 
 
 when the peer receive a FP-message he must generate a SHA1-ID of binary-file-pack received and compare it with the pack-SHA1-ID of the message, if they are == the file-pack is correct, else (&nbsp;!= ) the file-pack received is damaged and the peer must re-send the FPR-message. 
 
-<br> 
-
-''' ST [ start-point ]  '''
+<b>ST [ start-point ]</b>
 
 it is the point to start the file-pack, in bytes. It is used for know where start the file-pack in file. 
 
-<br> 
+<b> BN \n  <b>
 
-''' BN \n  '''
-
-''' [ binary-pack ]  '''
+<b>[ binary-pack ]</b>
 
 it is the binary of the file-pack. It is used for create the file. This part must be remain in binary-form during all the transit-time ( do not encode or decode to or from UTF16, if necessary it is possible use the Base64 format for manage the message when arrived ). 
 
 <br>
 
-=== Example  ===
+<h5>Example</h5>
 
 A want download a shared file of B; 
 
 A send to B a FPR-message: 
-<pre>FPR 
+<pre>
+FPR 
 
 112233
 
@@ -687,7 +670,8 @@ BN
 
 A control that the file-pack is not damaged, create the file and send the next FPR-message: 
 
-<pre>FPR
+<pre>
+FPR
 
 778899
 
@@ -699,9 +683,12 @@ FN pippo.png
 
 ID 11bb33dd
 
-ST 16384</pre>
+ST 16384
+</pre>
 
-== <br> PI ( Ping ) &amp; PO ( Pong )  ==
+<br>
+
+<h3>PI ( Ping ) &amp; PO ( Pong )</h3>
 
 In time the XML-List become old and is important update it. For this scope is born the PI and PO commands. 
 
@@ -715,47 +702,43 @@ The Ping-Pong messages is already used after creating a new TCP-connection.
 
 The structure of parameters: 
 
-=== PI-message &amp; PO-message  ===
+<h5>PI-message &amp; PO-message</h5>
+
 <pre>PID [ peer-ID ] \n
 
 FN [ file-name ] \n
 
 SZ [ file-size ] \n
 
-ID [ file-SHA1-ID ]</pre> 
+ID [ file-SHA1-ID ]
+</pre> 
 
 If the peer hasn't shared files the&nbsp;structure of parameters will be this: 
 
-<pre>PID [ peer-ID ]
+<pre>
+PID [ peer-ID ]
 </pre> 
 
-<br> This is the description: 
+<br> 
+This is the description: 
 
 <br> 
 
-''' PID [ peer-ID ]  '''
+<b>PID [ peer-ID ]</b>
 
 the ID of the peer that send the message. 
 
-<br> 
-
-''' FN [ file-name ]  '''
+<b>FN [ file-name ]</b>
 
 the name of a shared file. 
 
-<br> 
-
-''' SZ [ file-size ]  '''
+<b>SZ [ file-size ]</b>
 
 the size of the shared file. 
 
-<br> 
-
-''' ID [ file-SHA1-ID ]  '''
+<b>ID [ file-SHA1-ID ]</b>
 
 the SHA1-hash-ID of the shared file. 
-
-<br> 
 
 The parameters SZ and ID of a file must be after the parameter FN of that file. 
 
@@ -779,12 +762,15 @@ FN ... \n // 2
 
 SZ ... \n // 2
 
-ID ...    // 2</pre>
+ID ...    // 2
+</pre>
 
-=== Example  ===
+<h5>Example</h5>
 
 A send to B a PI-message with his informations ( A has 3 shared files ): 
-<pre>PI
+
+<pre>
+PI
 
 11bb33dd55
 
@@ -810,9 +796,13 @@ FN Pippo2.png
 
 SZ 8192
 
-ID fff444aaa</pre> 
-<br> And B replies to A with a PO-message: 
-<pre>PO
+ID fff444aaa
+</pre> 
+<br> 
+And B replies to A with a PO-message: 
+
+<pre>
+PO
 
 aa22cc44ee
 
@@ -826,10 +816,12 @@ FN photo.jpg
 
 SZ 8192
 
-ID aaabbbccc444</pre> 
+ID aaabbbccc444
+</pre> 
+
 <br>
 
-== XLR ( XML-List Request ) & XL ( XML-List )  ==
+<h3>XLR ( XML-List Request ) & XL ( XML-List )</h3>
 
 When a peer want to get a XML-List ( example: he has just entered in the net ) he will send a XLR-message and the peer that received it will reply with a XL-message that contains the XML-List in binary form. For these messages the TTL = 0 and they mustn't be spreaded to other peer. 
 
@@ -837,13 +829,14 @@ When a peer want to get a XML-List ( example: he has just entered in the net ) h
 
 The structure of parameters: 
 
-=== XLR-message  ===
+<h5>XLR-message</h5>
 
 This message hasn't parameters. 
 
 <br> 
 
-=== XL_message<br>  ===
+<h5>XL_message</h5>
+
 <pre>
 BN \n
 
@@ -854,16 +847,19 @@ BN \n
 This is the description:
 
 
-''' BN \n  '''
-''' [ binary-XML_List ]  '''
+<b>BN \n</b>
+
+
+<b>[ binary-XML_List ]</b>
 
 it is the binary of the XML-List. It is used from the peer that receive the message for build a XML-List. 
 
 <br>
 
-=== Example  ===
+<h5>Example</h5>
 
 A send to B a XLR-message: 
+
 <pre>
 XLR
 
@@ -873,7 +869,9 @@ XLR
 
 0
 </pre> 
+
 B reply to A with a XL-message that&nbsp;contains his xml-list updated ( if possible ): 
+
 <pre>
 XL
 
@@ -890,12 +888,12 @@ BN
 
 <br>
 
-== EI ( Encryption Info ) & EK ( Encryption Key ) ==
+<h3>EI ( Encryption Info ) & EK ( Encryption Key )</h3>
 
 The EI and EK messages are used when two peers wants establish a secure stream between them.
 
 
-=== EI-message  ===
+<h5>EI-message</h5>
 
 The EI command is used to communicate the public asymmetric encryption key to another peer for establish a secure stream.
 
@@ -903,7 +901,7 @@ The EI command is also used to communicate that the sender peer doesn't uses the
 
 The TTL must be 0 for the EI messages, and also if the TTL is not 0, for error, this messages MUST NOT spread.
 
-{{Warning|text=The EI message is NEVER encrypted.}}
+<b>Warning:</b> The EI message is NEVER encrypted.
 
 
 The structure of parameters:
@@ -918,23 +916,23 @@ AEK [ public asymmetric encryption key ]
 This is the description:
 
 
-''' EU [ y / n ]  '''
+<b>EU [ y / n ]</b>
 
 it indicates if the sender peer uses the message encryption ( y ) or not ( n ).
 
 
-''' AEK [ public asymmetric encryption key ] '''
+<b>AEK [ public asymmetric encryption key ]</b>
 
 the public asymmetric encryption key.
 
 If the sender peer doesn't use the message encryption this parameter is not used.
 
 
-=== EK-message ===
+<h5>EK-message</h5>
 
 It is used to communicate the symmetric encryption key to a peer for establish a secure stream.
 
-{{Warning|text=The EK message is ALWAYS encrypted with the public asymmetric encryption key of the EI message.}}
+<b>Warning</b> The EK message is ALWAYS encrypted with the public asymmetric encryption key of the EI message.
 
 
 The structure of parameters:
@@ -947,12 +945,12 @@ EK [ symmetric encryption key ]
 This is the description:
 
 
-''' EK [ symmetric encryption key ]  '''
+<b>EK [ symmetric encryption key ]</b>
 
 the symmetric encryption key.
 
 
-=== Example  ===
+<h5>Example</h5>
 
 A communicates to B that uses the message encryption and his public asymmetric encryption key:
 
@@ -997,5 +995,4 @@ EK
 
 EK hiu34984fubbu // it is encrypted
 </pre>
-
 <br>
