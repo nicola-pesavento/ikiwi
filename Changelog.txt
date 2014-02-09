@@ -1,0 +1,105 @@
+iKiwi 2.0.6.5
+
+[09/01/2012]
+> Fixed a small bug about the number of the listening port to use
+> Fixed a bug about a infinity during the sending of output data to other peers
+
+iKiwi 2.0.6.4
+
+[08/01/2012]
+> Fixed a bug about the closing of the tcp listener of iKiwi
+
+[07/01/2012]
+> Fixed a bug about the downloads
+> Fixed a small bug about the downloads panel
+
+[05/01/2012]
+> Fixed a small bug, iKiwi did not close the tcp listener during the exiting
+> Fixed a bug about the machine suspending, the tcp listener was being closed during the machine resuming
+
+iKiwi 2.0.6.3
+
+[28/12/2011]
+> Fixed the problem that does not exist the path of iKiwi where save the config.xml (and other) file
+
+iKiwi 2.0.6.2
+
+[27/12/2011]
+> Resolved the privileges problem
+
+[24/12/2011]
+> Improved the algorithm to get the remote ip
+
+iKiwi 2.0.6.1
+
+[21/12/2011]
+> Fixed a bug about the local IP address of the machine
+
+iKiwi 2.0.6.0
+
+[18/12/2011]
+> Added the UPnP support
+> Improved the testing of the ports
+
+[08/12/2011]
+> Improved the download process
+> Fixed: when iKiwi reached the maximum number of connection did not accept any new connection
+
+[06/12/2011]
+> Fixed: when iKiwi reached the max number of connections it did not check which peers were "sleeping"
+
+[04/12/2011]
+> Improved the performance of the downloads
+
+[03/12/2011]
+> Improved the performance when there are a big number of connected peers
+
+iKiwi 2.0.5.1
+
+[29/11/2011]
+> Added minimum size for the main form
+> Created the Peers Panel object
+
+[28/11/2011]
+> Improved the Facebook button
+
+[27/11/2011]
+> Fixed a bug during the changing of listening port
+> Improved the process of accepting of input connections
+
+[26/11/2011]
+> Improved the updating of the main form
+
+iKiwi 2.0.5.0
+
+[26/11/2011]
+> Improved the updating of the panel of the downloads
+
+[25/11/2011]
+> Completed the peers panel of selected download in the panel of the downloads
+> Renamed the name of the options on the Directory panel in the Tools
+> Improved the updating of the list of the shared files in the GUI
+
+[23/11/2011]
+> Fixed a bug during the creation of a Ping message
+
+[22/11/2011]
+> Added a progress bar in the panel of the shared files that indicates the building progress of the list of these files
+> Improve the starting of iKiwi (now the list of the shared files is built in a parallel thread)
+
+iKiwi 2.0.4.3
+
+[20/11/2011]
+> Improved the info of the download/upload rate in the GUI
+> Added the generation of log messages in during the loading, saving and deleting of list of the shared files
+> Fixed the loading of the saved list of the shared files
+
+iKiwi 2.0.4.2
+
+[20/11/2011]
+> Fixed the download speed info in the panel of the downloads
+> Fixed the counting of the download speed
+> Fixed the problem that iKiwi calculated the hash value of the shared files every time
+
+[18/11/2011]
+> Fixed a small bug with the download progress info

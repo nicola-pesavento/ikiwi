@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4C1CA46C-FED6-4F7E-981E-09E6E010B538}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>iKiwi</RootNamespace>
+    <AssemblyName>iKiwi</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+    <SourceAnalysisOverrideSettingsFile>C:\Users\nicola\AppData\Roaming\ICSharpCode/SharpDevelop4.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
+    <SignAssembly>False</SignAssembly>
+    <DelaySign>False</DelaySign>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <RunCodeAnalysis>False</RunCodeAnalysis>
+    <RunSourceAnalysis>False</RunSourceAnalysis>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>Full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+    <DocumentationFile>bin\Debug\iKiwi 2.0.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>PdbOnly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>ikiwi.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <StartAction>Project</StartAction>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <StartAction>Project</StartAction>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Daemons\Bouncer.cs" />
+    <Compile Include="Daemons\Downloader.cs" />
+    <Compile Include="GUI\ConsoleLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ConsoleLog.Designer.cs">
+      <DependentUpon>ConsoleLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Custom components\DownloadsPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Custom components\DownloadsPanel.Designer.cs">
+      <DependentUpon>DownloadsPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Custom components\FileSearchPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Custom components\FileSearchPanel.Designer.cs">
+      <DependentUpon>FileSearchPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Custom components\PeersPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Custom components\PeersPanel.Designer.cs">
+      <DependentUpon>PeersPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Custom components\SharedFilesPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Custom components\SharedFilesPanel.Designer.cs">
+      <DependentUpon>SharedFilesPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Global.cs" />
+    <Compile Include="GUI\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Tools.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Tools.Designer.cs">
+      <DependentUpon>Tools.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lists\FilesFoundList.cs" />
+    <Compile Include="Lists\FilesList.cs" />
+    <Compile Include="Lists\MessageIDsList.cs" />
+    <Compile Include="Lists\PeersList.cs" />
+    <Compile Include="Messages\AbstractMessage.cs" />
+    <Compile Include="Messages\EncryptionInfo.cs" />
+    <Compile Include="Messages\EncryptionKey.cs" />
+    <Compile Include="Messages\Exceptions.cs">
+      <DependentUpon>FileFound.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Messages\FilePack.cs" />
+    <Compile Include="Messages\FilePackRequest.cs" />
+    <Compile Include="Messages\FileFound.cs" />
+    <Compile Include="Messages\FileSearch.cs" />
+    <Compile Include="Messages\IMessage.cs" />
+    <Compile Include="Messages\MessagesFactory.cs" />
+    <Compile Include="Messages\Null.cs" />
+    <Compile Include="Messages\Ping.cs" />
+    <Compile Include="Messages\Pong.cs" />
+    <Compile Include="Daemons\PeerSearcher.cs" />
+    <Compile Include="Objects\Download.cs" />
+    <Compile Include="Objects\Peer.cs" />
+    <Compile Include="Objects\SharedFile.cs" />
+    <Compile Include="Utilities\BugReporter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\BugReporter.Designer.cs">
+      <DependentUpon>BugReporter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Configurator.cs" />
+    <Compile Include="Utilities\Converter.cs" />
+    <Compile Include="Utilities\Cryptography.cs" />
+    <Compile Include="Utilities\DirectoryHelper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\DirectoryHelper.Designer.cs">
+      <DependentUpon>DirectoryHelper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\FileSearcher.cs" />
+    <Compile Include="Utilities\GetKey.cs" />
+    <Compile Include="Utilities\Log.cs" />
+    <Compile Include="Utilities\MessageSender.cs" />
+    <Compile Include="Messages\XmlList.cs" />
+    <Compile Include="Messages\XmlListRequest.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\PeerIdGenerator.cs" />
+    <Compile Include="Utilities\PortChecker.cs" />
+    <Compile Include="Utilities\PortHelper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\PortHelper.Designer.cs">
+      <DependentUpon>PortHelper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Supporter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\Supporter.Designer.cs">
+      <DependentUpon>Supporter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Updater.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\Updater.Designer.cs">
+      <DependentUpon>Updater.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\UPnP.cs" />
+    <Compile Include="Utilities\XmlListManager.cs" />
+    <EmbeddedResource Include="GUI\ConsoleLog.resx">
+      <DependentUpon>ConsoleLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Custom components\DownloadsPanel.resx">
+      <DependentUpon>DownloadsPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Custom components\FileSearchPanel.resx">
+      <DependentUpon>FileSearchPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Custom components\PeersPanel.resx">
+      <DependentUpon>PeersPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Custom components\SharedFilesPanel.resx">
+      <DependentUpon>SharedFilesPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Tools.resx">
+      <DependentUpon>Tools.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Utilities\BugReporter.resx">
+      <DependentUpon>BugReporter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\DirectoryHelper.resx">
+      <DependentUpon>DirectoryHelper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\PortHelper.resx">
+      <DependentUpon>PortHelper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Supporter.resx">
+      <DependentUpon>Supporter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Updater.resx">
+      <DependentUpon>Updater.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ikiwi.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="NATUPNPLib">
+      <Guid>{1C565858-F302-471E-B409-F180AA4ABEC6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
