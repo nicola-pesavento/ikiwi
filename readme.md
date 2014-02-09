@@ -182,7 +182,7 @@ When two peers establish a connection they send each other a EI ( [[#EI_(_Encryp
 
 Then the peer that has accepted the connection request with the public asymmetric encryption key of the other peer ( communicated with the EI message ) communicates the symmetric encryption key and establishes a secure stream.
 
-<b>Warning</b> Is recomended for a major security use a different symmetric encryption key for each peer.
+<b>Warning:</b> Is recomended for a major security use a different symmetric encryption key for each peer.
 
 
 For establish a secure stream between two peers it is need that both the peers use the message encryption.
@@ -215,7 +215,7 @@ ID 123abc456
 
 And this is a encrypted message:
 
-<b>Warning</b> When a message is encrypted the length of the parameters may change, for this reason is important insert into the message the length of the ENCRYPTED parameters.
+<b>Warning:</b> When a message is encrypted the length of the parameters may change, for this reason is important insert into the message the length of the ENCRYPTED parameters.
 
 <pre>
 FF 
@@ -291,7 +291,8 @@ The messages from peer to peer are encoded in UTF16.
 
 This the general structure for the messages: 
 
-<pre>[ Command_name ] \n
+<pre>
+[ Command_name ] \n
 
 [ Message_ID ] \n
 
@@ -299,90 +300,93 @@ This the general structure for the messages:
 
 [ Parameters_length ] \n
 
-[ Parameters ]</pre> 
-<br> This is the description of the structure: 
+[ Parameters ]
+</pre> 
 
-{| cellspacing="3" width="100%"
-|- valign="top"
-| width="60%" class="MainPageBG" style="border: 1px dashed #999999; color: #000; background-color: rgb(255,255,255)" | <div style="padding: .3em .7em .7em">
-''' [ Command_name ]  '''
+
+This is the description of the structure: 
+
+<h5>[ Command_name ]</h5>
 
 it is the name of command of message, the its scope; 
 
-''' [ Message_ID ]  '''
+<h5>[ Message_ID ]</h5>
 
 the ID of message, it is used from peers for control that a message have not already procressed in the past. The peers must have a list of ID of the last message received ( recommend the last 50-100 messages ). 
 
 for create the message-ID must do a string as this: peer-ID(SHA1) + data + time(with milliseconds) + 10(recommended) casual numbers and encode it to SHA1 
-<pre>[peer-ID]-dd/mm/yyyy-hh:mm:ss:nnnnnn-xxxxxxxxxx =&gt; SHA1 encode.</pre> 
-{{Warning|text=When a peer spread a message he MUST NOT change or modify the ID of message.}}
+<pre>[peer-ID]-dd/mm/yyyy-hh:mm:ss:nnnnnn-xxxxxxxxxx  // SHA1 encode.</pre> 
 
-{{Info|text=The ID of message, it is used from peers for control that a message have not already procressed in the past.}}
+<b>Warning:</b> When a peer spread a message he MUST NOT change or modify the ID of message.
 
-''' [ TTL ]  '''
+<b>Info:</b> The ID of message, it is used from peers for control that a message have not already procressed in the past.
+
+<h5>[ TTL ]</h5>
 
 the time to live of the message, when a peer receive a message he must subtract 1 from TTL ( TTL-- ) first to spread it to other peers. when a message has a TTL = 0 it was not spread to other peers. 
 
-&nbsp;example: 
-<pre>A send a message with TTL=2 to B,
+example: 
+<pre>
+A send a message with TTL=2 to B,
 
-A 2---&gt; B 1---&gt; C 0---&gt; D ( D is the last peer that receive the message ).</pre> 
-''' [ Parameters_lenght ]  '''
+A 2---&gt; B 1---&gt; C 0---&gt; D ( D is the last peer that receive the message ).
+</pre>
+
+<h5>[ Parameters_lenght ]</h5>
 
 it is the length in bytes of the list of parameters. It is used by peer that receive the message for know where is the end of message. 
 
-''' [ Parameters ]  '''
+<h5>[ Parameters ]</h5>
 
 it is a list of indispensable elements for the scope of message. 
-</div>
-|}
 
-<br>
 
-=== The Commands  ===
+<h4>The Commands</h4>
 
 This protocol support a various type of commands and this is the list of them: 
 
-*FS ( File Search ) 
-*FF ( File Found ) 
-*FPR ( File Pack Request ) 
-*FP ( File Pack ) 
-*PI ( Ping ) 
-*PO ( Pong ) 
-*XLR ( XML-List Request ) 
-*XL ( XML-List )
-*EI ( Encryption Info )
-*EK ( Encryption Key )
+	- FS ( File Search )
+	- FF ( File Found ) 
+	- FPR ( File Pack Request ) 
+	- FP ( File Pack ) 
+	- PI ( Ping ) 
+	- PO ( Pong ) 
+	- XLR ( XML-List Request ) 
+	- XL ( XML-List )
+	- EI ( Encryption Info )
+	- EK ( Encryption Key )
 
-== How to use the messages  ==
+<h2>How to use the messages</h2>
 
 Here will was illustrated as to use the messages and their commands 
 
-== FS ( File Search ) &amp; FF ( File Found )  ==
+<h3>FS ( File Search ) &amp; FF ( File Found )</h3>
 
-When a peer wants search a shared file he must send to other peers the messages with the FS command ( File Search ). The peer that has received the FS-message must control if he has the file searched in his shared directory/ies and control if other peers in his Xml-List have the file; in this time the peer that has received the FS-message must spread it to other peers if the TTL &gt; 0. 
+When a peer wants search a shared file he must send to other peers the messages with the FS command ( File Search ). 
+The peer that has received the FS-message must control if he has the file searched in his shared directory/ies and control if other peers in his Xml-List have the file; in this time the peer that has received the FS-message must spread it to other peers if the TTL &gt; 0. 
 
 If the peer has the file he will send a message with the FF command ( File Found ) to the peer that searched the file. 
 
 If the peer find a other peer/s in his Xml-List that has the file he will send the FS-message to this peer. 
 
-Every peer that received a FS-message ( or start to send it ) must spread it to other 10 ( if is possible ) peers ( first the peers that have the file in Xml-List ) if the TTL &gt; 0. 
+Every peer that received a FS-message ( or start to send it ) must spread it to other 10 ( if is possible ) peers ( first the peers that have the file in Xml-List ) if the TTL != 0. 
 
-The recommended TTL for a FS-message is 5-6, 10^6 = 1 million of peers! 
+The recommended TTL for a FS-message is 5-6, ( 10^6 = 1 million of peers! ).
 
-Every peers is free to resize the TTL if it is much big, a example: if A send to B a message with TTL=15 A 15---&gt; B 5---&gt; C ... B resizes TTL to 5. 
+Every peers is free to resize the TTL if it is much big, a example: <br>
+if A send to B a message with TTL=15 A 15---&gt; B 5---&gt; C ... B resizes TTL to 5. 
 
 Is logic that the TTL of a FF-message is 0. 
 
-Important: the file name must be at least 4 characters long, except "." and "*" from them; if a file name doesn't respect this observance the message must be deleted and mustn't be spreaded. 
+<b>Important:</b> The file name must be at least 4 characters long, except "." and "*" from them; if a file name doesn't respect this observance the message must be deleted and mustn't be spreaded. 
 
-Example: ìpippoî and ìpippo*î are ok, but no ìpi**oî. 
+Example: "pippo", "pippo*" and "pi**o1" are ok, but no "pi**o". 
 
 <br> 
 
 The structure of parameters: 
 
-=== FS-message  ===
+<h4>FS-message</h4>
 <pre>
 [ IP:Port-searcher ] \n
 
@@ -394,14 +398,14 @@ FN [ file-name ]
 This is the description: 
 
 
-''' [ IP:Port-searcher ]  '''
+<h5>[ IP:Port-searcher ]</h5>
 
 the IP:Port of peer that start to search the file, the first ( called Searcher ). 
 
 It is used by the peers that found the searched file for establish a tcp-connection with the Searcher and send to he a FF-message. 
 
 
-''' FN [ file-name ]  '''
+<h5>FN [ file-name ]<h/5>
 
 the name of searched file ( example: FN photo.jpg or FN pippo ).
 
