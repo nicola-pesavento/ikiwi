@@ -18,7 +18,6 @@ licensed under GPLv3. Please read the license file.
 
 This is a pure P2P protocol. 
 
-<br> 
 
 Every peer (node) must have a unique personal ID and a XML-List of other peers connected with him. 
 
@@ -28,53 +27,46 @@ The IP-address is in IPv4 protocol.
 
 All the date and time informations are in UTC format. 
 
-<br>
 
 <h3>XML-List</h3>
 
 The xml-list containe a list of informations of the other peers actualy connected; this informatios are: ID, IP, a list of shared files, the time of start of connection. 
 
 The structure:
-<br> 
 
- <_[ ID of peer ]>
- 
-  <IP>
-   [ IP of peer ]
- 	
-  <Time>
-   [ data of start-connection, UTC dd/mm/yyyy hh:mm:ss]
- 	
-  <Files>
- 
-    <_[ hash-ID SHA1 of file ]>
- 
-      <Name>
-        [ file-name ]
- 
-      <Size>
-        [ size of file in bytes ]
-
-<br> 
-
-A example: 
 <pre>
-<?xml version="1.0"?>
-<Peers>
-  <_A2CCDE234EEA>
-    <IP>79.45.174.39:503</IP>
-    <Time>01/01/0001 00:00:00</Time>
-    <Files>
-      <_358C1AFEE814C1C7AA4073B10A41394FD69618CF>
-        <Name>clint.png</Name>
-        <Size>382775</Size>
-      </_358C1AFEE814C1C7AA4073B10A41394FD69618CF>
-    </Files>
-  </_A2CCDE234EEA>
-</Peers>
+ [ ID of peer ]
+ 
+ - [ IP of peer ]
+ 	
+ - [ data of start-connection, UTC dd/mm/yyyy hh:mm:ss]
+ 	
+ - [ files ]
+ 
+ --   [ hash-ID SHA1 of file ]
+ 
+ --   [ file-name ]
+ 
+ --   [ size of file in bytes ]
 </pre>
 
-{{Warning|text=The char '_' must be before in the [ID of peer] and in the [hash-ID SHA1 of file].}}
+A example:
+
+    <?xml version="1.0"?>
+	     <Peers>
+	       <_A2CCDE234EEA>
+		        <IP>79.45.174.39:503</IP>
+		        <Time>01/01/0001 00:00:00</Time>
+		        <Files>
+		           <_358C1AFEE814C1C7AA4073B10A41394FD69618CF>
+			          <Name>clint.png</Name>
+			          <Size>382775</Size>
+		           </_358C1AFEE814C1C7AA4073B10A41394FD69618CF>
+		        </Files>
+	       </_A2CCDE234EEA>
+	     </Peers>
+<br>
+<b>WARNING:</b> The char '_' must be before in the [ID of peer] and in the [hash-ID SHA1 of file].
 
 <br>
 
@@ -89,9 +81,11 @@ Create a string with the date and time ( timezone 0, with milliseconds, from 00:
 A example of the structure of string: dd/mm/yyyy-hh:mm:ss:nnnnnn-255.255.255.255:165-xxxxxxxxxx ( x = casual number ) 
 
 Example: 
-<pre>16/05/2010-15:46:21:534676-79.11.22.33:165-5786775460 =&gt; encode to SHA1</pre>
+
+    16/05/2010-15:46:21:534676-79.11.22.33:165-5786775460  // encode to SHA1
 <br>
-= '''Start a tcp connection'''  =
+
+<h3>Start a tcp connection</h3>
 
 This the procedure to establish a tcp connection from peer to peer; 
 
@@ -174,12 +168,12 @@ B to A: PO-message
 
 <h3>Message encryption</h3>
 
-{{Info|text=For a major privacy is recomended to encrypt the messages.}}
+<b>Info:</b> For a major privacy is recomended to encrypt the messages.
 
 
 Every peer can decide if encrypts or not his sent messages and if accept or not only the encrypted messages.
 
-A encrypted message has only the parameters encrypted (see the structure of a message: [[#Structure_of_messages | Message structure]]).
+A encrypted message has only the parameters encrypted (see the "Structure of a message" paragraph).
 
 The parameters of the messages are encrypted with the AES_128 symmetric encryption algorithm and the keys are sent using the DSA asymmetric encryption algorithm.
 
@@ -188,7 +182,7 @@ When two peers establish a connection they send each other a EI ( [[#EI_(_Encryp
 
 Then the peer that has accepted the connection request with the public asymmetric encryption key of the other peer ( communicated with the EI message ) communicates the symmetric encryption key and establishes a secure stream.
 
-{{Warning|text=Is recomended for a major security use a different symmetric encryption key for each peer.}}
+<b>Warning</b> Is recomended for a major security use a different symmetric encryption key for each peer.
 
 
 For establish a secure stream between two peers it is need that both the peers use the message encryption.
@@ -199,7 +193,7 @@ If the peer that has sent the connection request does not support the message en
 
 If the peer that has sent the connection request supports the message encryption but the peer that has accepted the connection does not use it, he ( the peer that has accepted the connection ) must send a EI-message where indicates that he does not use the message encryption; the other peer can decides to keep open the connection or close it.
 
-=== Example of messages  ===
+<h4>Example of messages</h4>
 
 This is a not-encrypted message:
 
@@ -221,7 +215,7 @@ ID 123abc456
 
 And this is a encrypted message:
 
-{{Warning|text=When a message is encrypted the length of the parameters may change, for this reason is important insert into the message the length of the ENCRYPTED parameters.}}
+<b>Warning</b> When a message is encrypted the length of the parameters may change, for this reason is important insert into the message the length of the ENCRYPTED parameters.
 
 <pre>
 FF 
@@ -239,7 +233,7 @@ a53fd26scv
 fytfytty467
 </pre>
 
-=== The procedure  ===
+<h4>The procedure</h4>
 
 This is the procedure:
 
@@ -293,7 +287,7 @@ A: can decides if keep open the connection or not
 
 The messages from peer to peer are encoded in UTF16. 
 
-=== Structure of messages  ===
+<h4>Structure of messages</h4>
 
 This the general structure for the messages: 
 
