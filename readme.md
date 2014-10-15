@@ -319,7 +319,7 @@ for create the message-ID must do a string as this: peer-ID(SHA1) + data + time(
 
 <b>Warning:</b> When a peer spread a message he MUST NOT change or modify the ID of message.
 
-<b>Info:</b> The ID of message, it is used from peers for control that a message have not already procressed in the past.
+<b>Info:</b> The ID of message, it is used from peers for control that a message have not already processed in the past.
 
 <h5>[ TTL ]</h5>
 
