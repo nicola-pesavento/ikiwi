@@ -615,7 +615,7 @@ when the peer receive a FP-message he must generate a SHA1-ID of binary-file-pac
 
 it is the point to start the file-pack, in bytes. It is used for know where start the file-pack in file. 
 
-<b> BN \n  <b>
+<b> BN \n  </b>
 
 <b>[ binary-pack ]</b>
 
