@@ -1,3 +1,5 @@
+<h1>THIS PROJECT IS DEPRECATED</h1>
+
 <h1> iKiwi </h1>
 
 iKiwi is a simple program for file sharing, absolutely free and open source. 
